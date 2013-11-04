@@ -27,22 +27,18 @@
 {
     [super viewDidAppear: animated];
     
-    CGFloat superViewWidth = self.view.frame.size.width;
-    CGFloat superViewHeight = self.view.frame.size.height;
-    
-    UIView *barrier = [[UIView alloc] initWithFrame:CGRectMake(0, superViewHeight * .90, superViewWidth, superViewHeight)];
-    
-    barrier.backgroundColor = [UIColor greenColor];
-    [self.view addSubview:barrier];
-    
     _animator = [[UIDynamicAnimator alloc] initWithReferenceView: self.view];
     
     UIGravityBehavior *gravityBehavior = [[UIGravityBehavior alloc] initWithItems: self.bubbleViews];
+    
+    CGVector gravityDirection = {0.0, -1.0};
+    [gravityBehavior setGravityDirection:gravityDirection];
     
     [_animator addBehavior: gravityBehavior];
     
     UICollisionBehavior *collisionBehavior = [[UICollisionBehavior alloc] initWithItems: self.bubbleViews];
     collisionBehavior.translatesReferenceBoundsIntoBoundary = YES;
+    
     [_animator addBehavior: collisionBehavior];
     
     for (UIView *bubbleView in self.bubbleViews)
@@ -52,31 +48,25 @@
             int xPos = arc4random() %300;
             int yPos = arc4random() %500;
             
-            UIView *view = [[UIView alloc] initWithFrame:CGRectMake(xPos,yPos,50,50)];
-            view.alpha = 0.5;
-            view.layer.cornerRadius = 25;
-            view.backgroundColor = [UIColor blueColor];
+            UIView *bubble = [[UIView alloc] initWithFrame:CGRectMake(xPos,yPos,50,50)];
+            bubble.alpha = 0.5;
+            bubble.layer.cornerRadius = 25;
+            bubble.backgroundColor = [UIColor blueColor];
             
-            [bubbleView addSubview: view];
-            [gravityBehavior addItem: view];
-            [collisionBehavior addItem: view];
-        }
-    }
-    /*
-    for (UIView *subBubbleView in self.subBubbleViews)
-    {
-        for (int i = 0; i < 5; i++)
-        {
-            UIView *innerView = [[UIView alloc] initWithFrame:CGRectMake(xPos,yPos,40,40)];
+            UIView *innerView = [[UIView alloc] initWithFrame:CGRectMake(xPos,yPos,10,10)];
             innerView.alpha = 0.5;
-            innerView.layer.cornerRadius = 20;
-            innerView.backgroundColor = [UIColor purpleColor];
-    
-            [subBubbleView addSubview: innerView];
-          // [collisionBehavior addSubview: innerView];
+            innerView.layer.cornerRadius = 5;
+            innerView.backgroundColor = [UIColor redColor];
+            
+            [bubbleView addSubview: bubble];
+            [gravityBehavior addItem: bubble];
+            [collisionBehavior addItem: bubble];
+            
+            [bubble addSubview: innerView];
+            [gravityBehavior addItem: innerView];
+            [collisionBehavior addItem: innerView];
         }
     }
-     */
 }
 
 - (void)didReceiveMemoryWarning

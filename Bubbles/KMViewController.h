@@ -11,6 +11,6 @@
 @interface KMViewController : UIViewController
 
 @property (nonatomic, strong) IBOutletCollection(UIView) NSArray *bubbleViews;
-//@property (nonatomic, strong) IBOutletCollection(UIView) NSArray *subBubbleViews;
+@property (strong, nonatomic) UIView *barrier;
 
 @end

@@ -18,7 +18,8 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <connections>
-                        <outletCollection property="bubbleViews" destination="kh9-bI-dsS" id="eHA-qb-ux6"/>
+                        <outlet property="view" destination="kh9-bI-dsS" id="HSN-cQ-SBg"/>
+                        <outletCollection property="bubbleViews" destination="kh9-bI-dsS" id="7SP-Mc-aMs"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
