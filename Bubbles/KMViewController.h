@@ -24,6 +24,8 @@
 @property (nonatomic, strong) IBOutlet UIView *greenBubbleSmall;
 @property (nonatomic, strong) IBOutlet UIView *purpleBubbleSmall;
 
+@property (nonatomic, strong) IBOutlet UIView *bigBubble;
+
 @property (strong, nonatomic) IBOutlet UIView *barrier;
 
 @end

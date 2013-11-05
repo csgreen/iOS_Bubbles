@@ -23,9 +23,15 @@
     
 }
 
+- (BOOL)canBecomeFirstResponder {
+    return YES;
+}
+
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear: animated];
+    
+    [self becomeFirstResponder];
     
     _animator = [[UIDynamicAnimator alloc] initWithReferenceView: self.view];
     
@@ -140,6 +146,29 @@
         }
     }
      */
+}
+
+-(void)motionEnded:(UIEventSubtype)motion withEvent:(UIEvent *)event {
+    
+    if (motion == UIEventSubtypeMotionShake) {
+        NSLog(@"shake");
+        
+        
+        _bigBubble = [[UIView alloc] initWithFrame:CGRectMake(100,150,150,150)];
+        _bigBubble.alpha = 0.5;
+        _bigBubble.layer.cornerRadius = 75;
+        _bigBubble.backgroundColor = [UIColor cyanColor];
+        _bigBubble.layer.shadowColor = [[UIColor blackColor] CGColor];
+        _bigBubble.layer.shadowOpacity = 1.0f;
+        _bigBubble.layer.shadowRadius = 8.0f;
+        [self.view addSubview:_bigBubble];
+    }
+    
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+	[self resignFirstResponder];
+	[super viewWillDisappear:animated];
 }
 
 - (void)didReceiveMemoryWarning
