@@ -39,18 +39,27 @@
     _purpleBubble.alpha = 0.5;
     _purpleBubble.layer.cornerRadius = 25;
     _purpleBubble.backgroundColor = [UIColor purpleColor];
+    _purpleBubble.layer.shadowColor = [[UIColor blackColor] CGColor];
+    _purpleBubble.layer.shadowOpacity = 1.0f;
+    _purpleBubble.layer.shadowRadius = 8.0f;
     [self.view addSubview:_purpleBubble];
     
     _yellowBubble = [[UIView alloc] initWithFrame:CGRectMake(50,400,50,50)];
     _yellowBubble.alpha = 0.5;
     _yellowBubble.layer.cornerRadius = 25;
     _yellowBubble.backgroundColor = [UIColor yellowColor];
+    _yellowBubble.layer.shadowColor = [[UIColor purpleColor] CGColor];
+    _yellowBubble.layer.shadowOpacity = 1.0f;
+    _yellowBubble.layer.shadowRadius = 8.0f;
     [self.view addSubview:_yellowBubble];
     
     _redBubble = [[UIView alloc] initWithFrame:CGRectMake(75,450,50,50)];
     _redBubble.alpha = 0.5;
     _redBubble.layer.cornerRadius = 25;
     _redBubble.backgroundColor = [UIColor redColor];
+    _redBubble.layer.shadowColor = [[UIColor greenColor] CGColor];
+    _redBubble.layer.shadowOpacity = 1.0f;
+    _redBubble.layer.shadowRadius = 8.0f;
     [self.view addSubview:_redBubble];
     
     _greenBubble = [[UIView alloc] initWithFrame:CGRectMake(175,450,50,50)];
@@ -102,6 +111,7 @@
     
     
     [_animator addBehavior: collisionBehavior];
+    
     /*
     for (UIView *bubbleView in self.bubbleViews)
     {
