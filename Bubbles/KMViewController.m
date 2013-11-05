@@ -118,13 +118,13 @@
     
     [_animator addBehavior: collisionBehavior];
     
-    /*
+    
     for (UIView *bubbleView in self.bubbleViews)
     {
-        for (int i = 0; i < 5; i++)
+        for (int i = 0; i < 10; i++)
         {
-            int xPos = arc4random() %100;
-            int yPos = arc4random() %700;
+            int xPos = arc4random() %300;
+            int yPos = arc4random() %400;
             
             UIView *bubble = [[UIView alloc] initWithFrame:CGRectMake(xPos,yPos,50,50)];
             bubble.alpha = 0.5;
@@ -136,16 +136,26 @@
             innerView.layer.cornerRadius = 5;
             innerView.backgroundColor = [UIColor redColor];
             
+            UIView *anotherView = [[UIView alloc] initWithFrame:CGRectMake(xPos,yPos,50,50)];
+            anotherView.alpha = 0.5;
+            anotherView.layer.cornerRadius = 25;
+            anotherView.backgroundColor = [UIColor blackColor];
+            
             [self.view addSubview: bubble];
             [gravityBehavior addItem: bubble];
             [collisionBehavior addItem: bubble];
             
-            [bubbleView addSubview: innerView];
+            [bubble addSubview: innerView];
             [gravityBehavior addItem: innerView];
             [collisionBehavior addItem: innerView];
+            
+            [self.view addSubview: anotherView];
+            [collisionBehavior addItem: anotherView];
+            
+       //     UITapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTap)];
         }
     }
-     */
+     
 }
 
 -(void)motionEnded:(UIEventSubtype)motion withEvent:(UIEvent *)event {
@@ -162,6 +172,12 @@
         _bigBubble.layer.shadowOpacity = 1.0f;
         _bigBubble.layer.shadowRadius = 8.0f;
         [self.view addSubview:_bigBubble];
+        
+        
+        UIGravityBehavior *gravityBehavior = [[UIGravityBehavior alloc] initWithItems: @[_blueBubble, _purpleBubble, _yellowBubble, _redBubble, _greenBubble]];
+        CGVector gravityDirection = {0.0, 1.0};
+        [gravityBehavior setGravityDirection:gravityDirection];
+        [_animator addBehavior: gravityBehavior];
     }
     
 }
